@@ -3,22 +3,18 @@ import React from 'react';
 import {render} from 'ink';
 import meow from 'meow';
 // import App from './app.js';
-import CountUp from './countUp.js';
+import Timer from './Timer.js';
 
 const cli = meow(
 	`
 	Usage
-	  $ Pomodoro-CLI
-
+	  $ pomo 
 	Options
 		--name  Your name
-        --sessionLength  <Length>
+        --session Session Length
 
 	Examples
-	  $ Pomodoro-CLI --name=Jane
-	  Hello, Jane
-
-	  $ Pomodoro-CLI --sessioLength 3600 //<1 Hour>
+	  $ pomo --session "1h20m1s"
 `,
 	{
 		importMeta: import.meta,
@@ -28,10 +24,10 @@ const cli = meow(
 			},
             session:{
                 type:  'string',
-				default : "1h",
+				default : "25m",
             }
 		},
 	},
 );
 
-render(<CountUp session={cli.flags.session} />);
+render(<Timer session={cli.flags.session} />);
