@@ -1,14 +1,37 @@
+#!/usr/bin/env node
 import React from 'react';
-import {Text} from 'ink';
+import {render} from 'ink';
+import meow from 'meow';
+import Timer from './Timer.js';
 
-type Props = {
-	name: string | undefined;
-};
+const cli = meow(
+	`
+	Usage
+	  $ pomo 
+	Options
+		--name  Your name
+        --session Session Length
 
-export default function App({name = 'Stranger'}: Props) {
-	return (
-		<Text>
-			Hello, <Text color="green">{name}</Text>
-		</Text>
-	);
-}
+	Examples
+	  $ pomo --session "1h20m1s"
+`,
+	{
+		importMeta: import.meta,
+		flags: {
+			name: {
+				type: 'string',
+			},
+            session:{
+                type:  'string',
+				default : "25m",
+            },
+			tags:{
+				type: 'string', 
+				default: 'general' , 
+			}
+		},
+	},
+);
+
+
+render(<Timer session={cli.flags.session} tags={cli.flags.tags} />);
