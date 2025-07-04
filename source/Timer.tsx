@@ -25,12 +25,18 @@ const Timer = ({session , tags}: Prop) => {
 
 	useEffect(()=>{
 	process.on('SIGINT', () => {
-		// TODO 
-		process.exit();
+			const pomo = SaveTimerLog(length - duration.current, startedAt) ; 
+			addPomodoro(pomo , current_tags) ; 
+				process.exit();
+			// setTimeout(()=>{
+			// } , 100)
 	});
 	process.on('SIGTERM', () => {
-		// TODO
-		process.exit();
+			const pomo = SaveTimerLog(length - duration.current, startedAt) ; 
+			addPomodoro(pomo , current_tags) ; 
+				process.exit();
+			// setTimeout(()=>{
+			// } , 100)
 	});
 
 	} , [])

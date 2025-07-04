@@ -17,3 +17,9 @@ export interface PomodoroTag{
     tags_id: number;
     pomodoro_id: number;
 }
+export interface FullPomodoro{
+    id?: number; 
+    start_datetime : string;
+    duration: number;
+    tags: string[] ; 
+};
