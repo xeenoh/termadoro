@@ -19,15 +19,18 @@
 	],
 	"dependencies": {
 		"beeper": "^3.0.0",
+		"better-sqlite3": "^12.2.0",
 		"figlet": "^1.8.1",
 		"ink": "^4.1.0",
 		"ink-big-text": "^2.0.0",
+		"ink-gradient": "^3.0.0",
 		"meow": "^11.0.0",
 		"react": "^18.2.0",
 		"sound-play": "^1.1.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^3.0.1",
+		"@types/better-sqlite3": "^7.6.13",
 		"@types/figlet": "^1.7.0",
 		"@types/node": "^24.0.3",
 		"@types/node-notifier": "^8.0.5",

@@ -17,19 +17,19 @@ db.exec(`
     PRAGMA foreign_keys = ON ; 
 
     CREATE TABLE IF NOT EXISTS "tags"(
-    "id" INTEGER NOT NULL PRIMARY KEY , 
+    "id" INTEGER NOT NULL PRIMARY KEY  AUTOINCREMENT, 
     "name" TEXT NOT NULL UNIQUE COLLATE NOCASE
 );
 
 CREATE TABLE IF NOT EXISTS "pomodoros"(
-    "id" INTEGER NOT NULL PRIMARY KEY,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "start_datetime" TEXT NOT NULL , 
     "end_datetime" TEXT  NOT NULL , 
     "duration" INTEGER --seconds
 ) ; 
 
 CREATE TABLE IF NOT EXISTS "pomodoro_tags"(
-    "id" INTEGER NOT NULL PRIMARY KEY,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "tags_id" INTEGER NOT NULL , 
     "pomodoro_id" INTEGER NOT NULL, 
 

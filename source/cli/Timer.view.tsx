@@ -1,10 +1,10 @@
 import React, {useRef , useState, useEffect} from 'react';
-import { parseCommand ,  formatTime , SaveTimerLog} from './utils/utils.js';
+import { parseCommand ,  formatTime , SaveTimerLog} from '../utils/utils.js';
 import {Box } from 'ink';
 import BigText from 'ink-big-text';
 import notifier from 'node-notifier' ; 
 import process from 'process';
-import { addPomodoro } from './db/services.js';
+import { addPomodoro } from '../db/controller.js';
 
 type Prop = {
 	session : string , 

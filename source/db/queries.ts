@@ -1,8 +1,6 @@
-import db from "./database.js"
-import { FullPomodoro} from "../types/models.js"
 
 
-const getAllPomosQuery = `
+export const getAllPomosQuery = `
     SELECT
         p.id , 
         p.duration, 
@@ -15,13 +13,117 @@ const getAllPomosQuery = `
     ORDER BY p.start_datetime DESC 
 `;
 
-export const GetAllPomodoros = () : FullPomodoro[] =>   {
-    let current_pomos = db.prepare(getAllPomosQuery).all(); 
-    current_pomos = current_pomos.map((pomo: any) => ({
-        id: pomo.id,
-        start_datetime: pomo.start_datetime,
-        duration: pomo.duration,
-        tags: pomo.tags ? pomo.tags.split(',') : []
-    })) ;
-    return current_pomos;
-}
+
+                                                                // WEEKLY 
+export const getLastWeekPomosQuery = `
+    SELECT 
+        p.id,
+        p.duration , 
+        p.start_datetime,
+        GROUP_CONCAT(t.name , ',') AS tags
+    FROM pomodoros AS p
+    LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
+    LEFT JOIN tags t on pt.tags_id = t.id
+    WHERE DATE(p.start_datetime) BETWEEN DATE('now' ,  '-13 days' , 'weekday 1')
+    AND DATE('now' , '-7 days' , 'weekday 0') 
+    GROUP BY p.id ; 
+`;
+
+export const getThisWeekPomoQuery = `
+    SELECT 
+        p.id,
+        p.duration , 
+        p.start_datetime,
+        GROUP_CONCAT(t.name , ',') AS tags
+    FROM pomodoros AS p
+    LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
+    LEFT JOIN tags t on pt.tags_id = t.id
+    WHERE DATE(p.start_datetime) BETWEEN DATE('now' ,  'weekday 1' , '-7 days')
+    AND DATE('now')
+    GROUP BY p.id ; 
+`
+
+                                                                // DAILY 
+export const getTodayPomoQuery = 
+`
+    SELECT 
+        p.id,
+        p.duration , 
+        p.start_datetime,
+        GROUP_CONCAT(t.name , ',') AS tags
+    FROM pomodoros AS p
+    LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
+    LEFT JOIN tags t on pt.tags_id = t.id
+    WHERE DATE(p.start_datetime) = DATE('now')
+    GROUP BY p.id ; 
+` ;
+export const getYesterdayPomoQuery = 
+`
+    SELECT 
+        p.id,
+        p.duration , 
+        p.start_datetime,
+        GROUP_CONCAT(t.name , ',') AS tags
+    FROM pomodoros AS p
+    LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
+    LEFT JOIN tags t on pt.tags_id = t.id
+    WHERE DATE(p.start_datetime) = DATE('now' , '-1 day')
+    GROUP BY p.id ; 
+` ;
+
+                                                                // MONTHLY
+export const getThisMonthPomoQuery = 
+`
+    SELECT 
+        p.id,
+        p.duration , 
+        p.start_datetime,
+        GROUP_CONCAT(t.name , ',') AS tags
+    FROM pomodoros AS p
+    LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
+    LEFT JOIN tags t on pt.tags_id = t.id
+    WHERE strftime('%Y-%m' , p.start_datetime) = strftime('%Y-%m', 'now')
+    GROUP BY p.id ; 
+`
+
+export const getLastMonthPomoQuery = 
+`
+    SELECT 
+        p.id,
+        p.duration , 
+        p.start_datetime,
+        GROUP_CONCAT(t.name , ',') AS tags
+    FROM pomodoros AS p
+    LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
+    LEFT JOIN tags t on pt.tags_id = t.id
+    WHERE strftime('%Y-%m' , p.start_datetime) = strftime('%Y-%m', 'now' , '-1 month')
+    GROUP BY p.id ; 
+`
+                                                                // YEARLY
+export const getThisYearPomoQuery = 
+`
+    SELECT 
+        p.id,
+        p.duration , 
+        p.start_datetime,
+        GROUP_CONCAT(t.name , ',') AS tags
+    FROM pomodoros AS p
+    LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
+    LEFT JOIN tags t on pt.tags_id = t.id
+    WHERE strftime('%Y' , p.start_datetime) = strftime('%Y', 'now')
+    GROUP BY p.id ; 
+`
+
+export const getLastYearPomoQuery = 
+`
+    SELECT 
+        p.id,
+        p.duration , 
+        p.start_datetime,
+        GROUP_CONCAT(t.name , ',') AS tags
+    FROM pomodoros AS p
+    LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
+    LEFT JOIN tags t on pt.tags_id = t.id
+    WHERE strftime('%Y' , p.start_datetime) = strftime('%Y', 'now' , '-1 year')
+    GROUP BY p.id ; 
+`
