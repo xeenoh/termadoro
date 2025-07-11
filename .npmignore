@@ -1,0 +1,7 @@
+src/
+tests/
+*.ts
+*.test.ts
+.vscode/
+node_modules/
+.dockerignore
