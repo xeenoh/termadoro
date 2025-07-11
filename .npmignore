@@ -5,3 +5,4 @@ tests/
 .vscode/
 node_modules/
 .dockerignore
+*.db
