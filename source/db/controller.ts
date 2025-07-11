@@ -3,6 +3,8 @@ import { Pomodoro , Tag } from '../types/models.js';
 
 
 export function addPomodoro(pomodoro: Omit<Pomodoro , 'id'> , tags: string[]):void {
+	// POMODOROS LESS THAN 10 MIN WON'T BE SAVED
+	if (pomodoro.duration < 10 * 60) return;
 
 	const insertPomodoro = db.prepare(
 		`

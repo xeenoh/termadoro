@@ -3,3 +3,6 @@ dist
 design.md
 schema.sql
 *.db
+
+source/GenerateData.ts
+dist/GenerateData.js

@@ -23,8 +23,8 @@ db.exec(`
 
 CREATE TABLE IF NOT EXISTS "pomodoros"(
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "start_datetime" TEXT NOT NULL , 
-    "end_datetime" TEXT  NOT NULL , 
+    "start_datetime" TEXT NOT NULL UNIQUE , 
+    "end_datetime" TEXT  NOT NULL UNIQUE, 
     "duration" INTEGER --seconds
 ) ; 
 

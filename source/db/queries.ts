@@ -100,8 +100,7 @@ export const getLastMonthPomoQuery =
     GROUP BY p.id ; 
 `
                                                                 // YEARLY
-export const getThisYearPomoQuery = 
-`
+export const getThisYearPomoQuery = `
     SELECT 
         p.id,
         p.duration , 
@@ -110,9 +109,10 @@ export const getThisYearPomoQuery =
     FROM pomodoros AS p
     LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
     LEFT JOIN tags t on pt.tags_id = t.id
-    WHERE strftime('%Y' , p.start_datetime) = strftime('%Y', 'now')
+    WHERE DATE(p.start_datetime, 'localtime') >= DATE('now', 'start of year', 'localtime') AND DATE(p.start_datetime, 'localtime') <= DATE('now', 'localtime')
+
     GROUP BY p.id ; 
-`
+`;
 
 export const getLastYearPomoQuery = 
 `
@@ -124,6 +124,21 @@ export const getLastYearPomoQuery =
     FROM pomodoros AS p
     LEFT JOIN pomodoro_tags pt on p.id = pt.pomodoro_id
     LEFT JOIN tags t on pt.tags_id = t.id
-    WHERE strftime('%Y' , p.start_datetime) = strftime('%Y', 'now' , '-1 year')
+    WHERE DATE(p.start_datetime, 'localtime') >= DATE('now', 'start of year', '-1 year', 'localtime')
+    AND DATE(p.start_datetime, 'localtime') < DATE('now', 'start of year', 'localtime')
+
     GROUP BY p.id ; 
 `
+export const getTagsAndDurationsQuery = `
+SELECT 
+    t.id,
+    t.name,
+    SUM(p.duration) AS total_duration,
+    COUNT(p.id) AS total_pomos
+FROM tags AS t
+JOIN pomodoro_tags pt ON pt.tags_id = t.id
+JOIN pomodoros p ON p.id = pt.pomodoro_id
+GROUP BY t.id
+ORDER BY total_duration DESC, p.end_datetime DESC
+LIMIT 6 ; 
+`;

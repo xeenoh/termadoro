@@ -1,9 +1,11 @@
 {
-	"name": "Pomodoro-CLI",
-	"version": "0.0.0",
+	"name": "termadoro",
+	"version": "1.0.0",
+	"description": "A TUI Pomdoro Timer with tagging and reporting support",
+	"author": "Zeyad Hesham",
 	"license": "MIT",
 	"bin": {
-		"pomo": "dist/app.js"
+		"terma": "dist/app.js"
 	},
 	"type": "module",
 	"engines": {
@@ -12,21 +14,22 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc --watch",
-		"test": "prettier --check . && xo && ava"
+		"test": "vitest",
+		"test:watch": "vitest --watch"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"assets",
+		"readme.md"
 	],
 	"dependencies": {
-		"beeper": "^3.0.0",
 		"better-sqlite3": "^12.2.0",
 		"figlet": "^1.8.1",
 		"ink": "^4.1.0",
 		"ink-big-text": "^2.0.0",
 		"ink-gradient": "^3.0.0",
 		"meow": "^11.0.0",
-		"react": "^18.2.0",
-		"sound-play": "^1.1.0"
+		"react": "^18.2.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^3.0.1",
@@ -47,6 +50,7 @@
 		"prettier": "^2.8.7",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.8.3",
+		"vitest": "^3.2.4",
 		"xo": "^1.1.0"
 	},
 	"ava": {
@@ -65,5 +69,10 @@
 			"react/prop-types": "off"
 		}
 	},
-	"prettier": "@vdemedes/prettier-config"
+	"repository": {
+		"type": "git",
+		"url" : "https://github.com/xeenoh/termadoro"
+	},
+	"prettier": "@vdemedes/prettier-config" , 
+	"keywords": ["cli" , "pomodoro", "productivity" , "tui" , "ink" , "nodejs"]
 }
