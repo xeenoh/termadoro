@@ -54,11 +54,15 @@ $ npm install --global termadoro
 2. Nodejs
 3. Typescript
 3. Sqlite3 
-4. Vitest for testing
+4. Vitest (Testing Framework)
+
+
 ---
 
-# Dependency
-- Sqlite DB
+# 🔗 Dependencies
+- [SQLite3](https://www.sqlite.org/)
+- [Node.js](https://nodejs.org/)
+
 
 ---
 # 📝 DB Schema
@@ -83,3 +87,7 @@ erDiagram
     TAGS ||--o{ POMODORO_TAGS : has
     POMODOROS ||--o{ POMODORO_TAGS : has
 ```
+---
+![npm](https://img.shields.io/npm/v/termadoro)
+![license](https://img.shields.io/npm/l/termadoro)
+![stars](https://img.shields.io/github/stars/your-username/termadoro?style=social)
