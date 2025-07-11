@@ -1,6 +1,6 @@
 {
 	"name": "termadoro",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A TUI Pomdoro Timer with tagging and reporting support",
 	"author": "Zeyad Hesham",
 	"license": "MIT",
@@ -71,8 +71,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url" : "https://github.com/xeenoh/termadoro"
+		"url": "https://github.com/xeenoh/termadoro"
 	},
-	"prettier": "@vdemedes/prettier-config" , 
-	"keywords": ["cli" , "pomodoro", "productivity" , "tui" , "ink" , "nodejs"]
+	"prettier": "@vdemedes/prettier-config",
+	"keywords": [
+		"cli",
+		"pomodoro",
+		"productivity",
+		"tui",
+		"ink",
+		"nodejs"
+	]
 }
