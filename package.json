@@ -1,6 +1,6 @@
 {
 	"name": "termadoro",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "A TUI Pomdoro Timer with tagging and reporting support",
 	"author": "Zeyad Hesham",
 	"license": "MIT",
