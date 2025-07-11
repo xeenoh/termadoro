@@ -88,6 +88,3 @@ erDiagram
     POMODOROS ||--o{ POMODORO_TAGS : has
 ```
 ---
-![npm](https://img.shields.io/npm/v/termadoro)
-![license](https://img.shields.io/npm/l/termadoro)
-![stars](https://img.shields.io/github/stars/your-username/termadoro?style=social)
